@@ -67,6 +67,7 @@ class RetinafaceDetector:
         keep = py_cpu_nms(dets, nms_threshold)
         # keep = nms(dets, args.nms_threshold,force_cpu=args.cpu)
         dets = dets[keep, :]
+        scores = scores[keep]
         landms = landms[keep]
 
         # keep top-K faster NMS
@@ -80,5 +81,5 @@ class RetinafaceDetector:
         landms = landms.reshape(-1, 10, )
         # print(landms.shape)
 
-        return dets, landms
+        return dets, scores
 
